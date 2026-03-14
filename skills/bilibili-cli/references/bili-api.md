@@ -62,21 +62,39 @@ asyncio.run(main())
 
 ```python
 import asyncio
-from bilibili_api import dynamic, Credential
+from bilibili_api import dynamic
+from bilibili_api.utils.picture import Picture
 from references.bili-api.get_credential import get_credential
 
 async def main():
     credential = get_credential()
 
-    # 发送图文动态
+    # 加载本地图片
+    picture = Picture.from_file("/path/to/image.jpg")
+
+    # 构建图文动态
+    build = dynamic.BuildDynamic.empty()
+    build.add_plain_text("这是一条图文动态")
+    build.add_image(picture)
+
+    # 发送动态
     result = await dynamic.send_dynamic(
-        credential=credential,
-        text="这是一条图文动态",
-        images=["/path/to/image1.jpg", "/path/to/image2.png"]
+        info=build,
+        credential=credential
     )
-    print(result)
+    print(f"动态ID: {result['dyn_id']}")
 
 asyncio.run(main())
+```
+
+**多图示例：**
+
+```python
+# 多张图片
+pics = [Picture.from_file(f"/path/to/image{i}.jpg") for i in range(1, 4)]
+build = dynamic.BuildDynamic.empty()
+build.add_plain_text("多条图片动态")
+build.add_image(pics)  # 传入列表
 ```
 
 ## 示例：发送纯文本动态
