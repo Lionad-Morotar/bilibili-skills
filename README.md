@@ -55,4 +55,6 @@ MIT
 
 ---
 
-thanks: https://github.com/jackwener/bilibili-cli
+thanks:
+- https://github.com/jackwener/bilibili-cli
+- https://nemo2011.github.io/bilibili-api
