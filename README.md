@@ -6,7 +6,7 @@ Claude Skill for Bilibili operations — browse videos, search, download audio, 
 
 ```bash
 cd ~/.claude
-npx skills add Lionad-Morotar/bilibili-skills
+npx skills add https://github.com/Lionad-Morotar/bilibili-skills
 ```
 
 ## Usage
